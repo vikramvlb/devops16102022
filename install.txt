@@ -1,0 +1,18 @@
+curl -fsSL https://pkg.jenkins.io/debian-stable/jenkins.io.key | tee \
+    /usr/share/keyrings/jenkins-keyring.asc > /dev/null
+
+echo deb [signed-by=/usr/share/keyrings/jenkins-keyring.asc] \
+    https://pkg.jenkins.io/debian-stable binary/ | tee \
+    /etc/apt/sources.list.d/jenkins.list > /dev/null
+
+apt update
+apt-get -qq upgrade
+
+apt-get -qq install \
+    openjdk-11-jdk \
+    ca-certificates \
+    curl \
+    gnupg \
+    lsb-release
+
+apt-get -qq install jenkins
